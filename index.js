@@ -25,7 +25,11 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Nexus Bot Ready to Listening🚀");
+});
+
+app.listen(port, () => {
+  console.log("Nexus Bot Ready t Listening🚀");
 });
 
 const validApiKeys = {
