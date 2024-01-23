@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "build": "echo 'Netlify does not need a build step for this project'"
+    "build": "netlify deploy --prod"
   },
   "keywords": [],
   "author": "",
