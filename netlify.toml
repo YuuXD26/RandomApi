@@ -1,0 +1,5 @@
+[build]
+  command = "npm install && node index.js"  # Sesuaikan dengan file utama aplikasi Node.js Anda
+
+[[plugins]]
+  package = "@netlify/plugin-functions"
