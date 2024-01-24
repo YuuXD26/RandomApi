@@ -1,5 +1,5 @@
 const express = require("express");
-const sharp = require("sharp");
+//const sharp = require("sharp");
 const axios = require("axios");
 const puppeteer = require("puppeteer");
 const bodyParser = require("body-parser");
@@ -767,42 +767,6 @@ app.get("/api/screenshot/website", async (req, res) => {
 
   res.contentType("image/png");
   res.send(screenshot);
-});
-
-app.get("/api/sticker/link", async (req, res) => {
-  const { link, apikey } = req.query;
-
-  if (!link || !apikey) {
-    return res
-      .status(400)
-      .json({ error: "Link gambar dan apikey harus disertakan" });
-  }
-
-  try {
-    const response = await axios.get(link, {
-      responseType: "arraybuffer",
-      headers: { Authorization: `Bearer ${apikey}` },
-    });
-
-    const imageBuffer = Buffer.from(response.data, "binary");
-
-    sharp(imageBuffer)
-      .webp()
-      .toBuffer()
-      .then((webpBuffer) => {
-        const webpBase64 = webpBuffer.toString("base64");
-        const dataURI = `data:image/webp;base64,${webpBase64}`;
-
-        res.json({ stickerLink: dataURI });
-      })
-      .catch((error) => {
-        res
-          .status(500)
-          .json({ error: "Terjadi kesalahan saat mengonversi gambar" });
-      });
-  } catch (error) {
-    res.status(500).json({ error: "Terjadi kesalahan saat mengambil gambar" });
-  }
 });
 
 app.listen(port, () => {
